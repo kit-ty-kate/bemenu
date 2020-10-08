@@ -175,8 +175,6 @@ usage(FILE *out, const char *name)
           " -I, --index           select item at index automatically.\n"
           " --scrollbar           display scrollbar. (none (default), always, autohide)\n"
           " --ifne                only display menu if there are items.\n"
-          " --fork                always fork. (bemenu-run)\n"
-          " --no-exec             do not execute command. (bemenu-run)\n\n"
 
           "Use BEMENU_BACKEND env variable to force backend:\n"
           " curses               ncurses based terminal backend\n"
@@ -228,8 +226,6 @@ do_getopt(struct client *client, int *argc, char **argv[])
         { "prefix",      required_argument, 0, 'P' },
         { "scrollbar",   required_argument, 0, 0x100 },
         { "ifne",        no_argument,       0, 0x115 },
-        { "fork",        no_argument,       0, 0x116 },
-        { "no-exec",     no_argument,       0, 0x117 },
 
         { "bottom",      no_argument,       0, 'b' },
         { "grab",        no_argument,       0, 'f' },
@@ -294,12 +290,6 @@ do_getopt(struct client *client, int *argc, char **argv[])
                 break;
             case 0x115:
                 client->ifne = true;
-                break;
-            case 0x116:
-                client->force_fork = true;
-                break;
-            case 0x117:
-                client->no_exec = true;
                 break;
 
             case 'b':
