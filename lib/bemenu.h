@@ -59,7 +59,7 @@ bool bm_init(void);
  * @param out_nmemb Reference to uint32_t where total count of returned renderers will be stored.
  * @return Pointer to array of bm_renderer instances.
  */
-const struct bm_renderer** bm_get_renderers(uint32_t *out_nmemb);
+struct bm_renderer* bm_get_renderer(void);
 
 /** @} Library Initialization */
 
@@ -83,37 +83,6 @@ const char* bm_version(void);
 /**
  * @addtogroup Renderer
  * @{ */
-
-/**
- * Prioritories for renderer plugins.
- */
-enum bm_priorty {
-    /**
-     * Renderer runs in terminal.
-     */
-    BM_PRIO_TERMINAL,
-
-    /**
-     * Renderer runs in GUI.
-     */
-    BM_PRIO_GUI,
-};
-
-/**
- * Get name of the renderer.
- *
- * @param renderer bm_renderer instance.
- * @return Null terminated C "string" to renderer's name.
- */
-const char* bm_renderer_get_name(const struct bm_renderer *renderer);
-
-/**
- * Get priorty of the renderer.
- *
- * @param renderer bm_renderer instance.
- * @return bm_priorty enum value.
- */
-enum bm_priorty bm_renderer_get_priorty(const struct bm_renderer *renderer);
 
 /**
  * @} Renderer */
@@ -250,7 +219,7 @@ enum bm_color {
  * @param renderer Name of renderer to be used for this instance, pass **NULL** for auto-detection.
  * @return bm_menu for new menu instance, **NULL** if creation failed.
  */
-struct bm_menu* bm_menu_new(const char *renderer);
+struct bm_menu* bm_menu_new(void);
 
 /**
  * Release bm_menu instance.

@@ -93,39 +93,12 @@ struct render_api {
      * Control overlap with panels
      */
     void (*set_overlap)(const struct bm_menu *menu, bool overlap);
-
-    /**
-     * Version of the plugin.
-     * Should match BM_PLUGIN_VERSION or failure.
-     */
-    const char *version;
-
-    /**
-     * Priorty of the plugin.
-     * Terminal renderers should be first, then graphicals.
-     */
-    enum bm_priorty priorty;
 };
 
 /**
  * Internal bm_renderer struct.
  */
 struct bm_renderer {
-    /**
-     * Name of the renderer.
-     */
-    char *name;
-
-    /**
-     * File path of the renderer.
-     */
-    char *file;
-
-    /**
-     * Open handle to the plugin file of this renderer.
-     */
-    void *handle;
-
     /**
      * Data used by the renderer internally.
      * Nobody else should touch this.
@@ -356,6 +329,9 @@ size_t bm_utf8_rune_width(const char *rune, uint32_t u8len);
 size_t bm_utf8_rune_remove(char *string, size_t start, size_t *out_rune_width);
 size_t bm_utf8_rune_insert(char **string, size_t *bufSize, size_t start, const char *rune, uint32_t u8len, size_t *out_rune_width);
 size_t bm_unicode_insert(char **string, size_t *bufSize, size_t start, uint32_t unicode, size_t *out_rune_width);
+
+void
+register_renderer(struct render_api *api);
 
 #endif /* _BEMENU_INTERNAL_H_ */
 

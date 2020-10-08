@@ -399,7 +399,7 @@ fail:
     return false;
 }
 
-extern const char*
+void
 register_renderer(struct render_api *api)
 {
     api->constructor = constructor;
@@ -411,9 +411,6 @@ register_renderer(struct render_api *api)
     api->grab_keyboard = grab_keyboard;
     api->set_overlap = set_overlap;
     api->set_monitor = set_monitor;
-    api->priorty = BM_PRIO_GUI;
-    api->version = BM_PLUGIN_VERSION;
-    return "wayland";
 }
 
 /* vim: set ts=8 sw=4 tw=0 :*/

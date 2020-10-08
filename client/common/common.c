@@ -389,10 +389,8 @@ struct bm_menu*
 menu_with_options(struct client *client)
 {
     struct bm_menu *menu;
-    if (!(menu = bm_menu_new(NULL)))
+    if (!(menu = bm_menu_new()))
         return NULL;
-
-    client->fork = (client->force_fork || (bm_renderer_get_priorty(bm_menu_get_renderer(menu)) != BM_PRIO_TERMINAL));
 
     bm_menu_set_font(menu, client->font);
     bm_menu_set_line_height(menu, client->line_height);
