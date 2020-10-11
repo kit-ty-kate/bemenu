@@ -16,7 +16,7 @@
  (foreign_stubs
   (language c)
   (names xdg-shell wlr-layer-shell-unstable-v1 wayland registry window filter
-    library util item list menu common)
+    library util item list menu)
   (include_dirs lib)
   (flags
    (:standard
