@@ -38,13 +38,16 @@
  (action
   (run wayland-scanner private-code %{deps} %{target})))
 
-;; TODO: avoid (bash ...)
+(rule
+ (target xdg-shell.xml)
+ (action
+  (run config/copy-xdg-shell-xml.sh)))
 
 (rule
  (target xdg-shell.c)
+ (deps xdg-shell.xml)
  (action
-  (bash
-    "wayland-scanner private-code \"$(pkg-config --variable=pkgdatadir wayland-protocols)/stable/xdg-shell/xdg-shell.xml\" %{target}")))
+  (run wayland-scanner private-code %{deps} %{target})))
 
 (rule
  (targets c_flags.sexp c_library_flags.sexp)
